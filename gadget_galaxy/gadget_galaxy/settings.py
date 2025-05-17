@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'gadget_galaxy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgres',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mystore',
         'USER': 'remonda',
         'PASSWORD': '123',
