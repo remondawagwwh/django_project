@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from category.models import Category
+from .models import Category
 from .models import Product
 
 def product_list(request):
