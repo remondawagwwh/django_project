@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Add New Product{% endblock %}
+{% block content %}
+<h2>Add New Product</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+        <label for="Pname">Product Name:</label>
+        <input type="text" id="Pname" name="Pname" required>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+    </div>
+
+    <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+    </div>
+
+    <div>
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" required>
+    </div>
+
+    <div>
+        <label for="sku">SKU:</label>
+        <input type="text" id="sku" name="sku" required>
+    </div>
+
+    <div>
+        <label for="bcat">Category:</label>
+        <select id="bcat" name="bcat" required>
+            {% for category in catagories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="Pimage">Product Image:</label>
+        <input type="file" id="Pimage" name="Pimage">
+    </div>
+
+    <button type="submit">Save Product</button>
+</form>
+{% endblock %}

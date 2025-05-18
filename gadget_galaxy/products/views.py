@@ -55,8 +55,10 @@ def product_update(request, id):
 
 def product_delete(request, id):
     product = get_object_or_404(Product, pk=id)
-    product.softdelete()  # soft delete
-    return redirect('product_list')
+    if request.method == 'POST':  # Always use POST for destructive actions
+        product.softdelete()
+        return redirect('product_list')
+    return render(request, 'products/list.html', {'product': product})
 
 def product_details(request, id):
     product = get_object_or_404(Product, pk=id)

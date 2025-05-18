@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Products List {% endblock %}
+{% block content %}
+<h2>Products List</h2>
+<table border="1" cellpadding="5" style="width:100%">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>SKU</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td style="text-align:center">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="50" height="50">
+                {% else %}
+                    <span>No image</span>
+                {% endif %}
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.sku }}</td>
+            <td>
+                <a href="{% url 'product_details' product.id %}">Details</a> |
+                <a href="{% url 'product_update' product.id %}">Update</a> |
+                <a href="{% url 'product_delete' product.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7">No products found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'product_new' %}">Add New Product</a>
+{% endblock %}
