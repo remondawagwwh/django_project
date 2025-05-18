@@ -1,0 +1,11 @@
+{% extends 'parent.html' %}
+{% block title %}Update Category{% endblock %}
+{% block content %}
+<h1>Update Category</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="name" value="{{ category.name }}" required><br><br>
+    <textarea name="description">{{ category.description }}</textarea><br><br>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

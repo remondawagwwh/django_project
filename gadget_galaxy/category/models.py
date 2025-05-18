@@ -1,7 +1,21 @@
 from django.db import models
 
-# Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, unique=True)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    status = models.BooleanField(default=True)  # للحذف الناعم
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def getall(cls):
+        return cls.objects.filter(status=True)
+
+    @classmethod
+    def get_catagory_by_id(cls, id):
+        return cls.objects.filter(pk=id).first()
+
+    def softdelete(self):
+        self.status = False
+        self.save()
