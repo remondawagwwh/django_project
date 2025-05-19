@@ -42,14 +42,14 @@ class Product(models.Model):
     def harddel(cls, id):
         return cls.objects.filter(pk=id).delete()
 
-    @classmethod
-    def softdelete(cls, id):
-        cls.objects.filter(pk=id).update(status=False)
+    # @classmethod
+    # def softdelete(cls, id):
+    #     cls.objects.filter(pk=id).update(status=False)
 
     @staticmethod
     def go_to_Products_List():
         return redirect('product_list')
 
-    # def softdelete(self):
-    #     self.status = False
-    #     self.save()
+    def softdelete(self):
+        self.status = False
+        self.save()
